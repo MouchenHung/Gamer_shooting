@@ -7,8 +7,14 @@
 #define OBJ_GOOD_LEVEL 15
 #define OBJ_BAD_LEVEL 10
 
-#define OBJ_GOOD_SYB '$'
-#define OBJ_BAD_SYB '#'
+#define OBJ_GOOD_SYB                '$'
+#define OBJ_BAD_SYB                 '#'
+#define OBJ_SHOOT_SYB               '|'
+#define OBJ_HIT_SYB                 'X'
+#define OBJ_BACKGROUND_SYB          '*'
+#define OBJ_PLAYER_A_SYB            'A'
+#define OBJ_PLAYER_B_SYB            'B'
+#define OBJ_BOTH_SYB                '@'
 
 #define M_SLEEP(n) usleep(n*1000);
 #define WINING_SCORE 100
@@ -141,32 +147,32 @@ void *playground(void *arg) {
             for (int x=0; x<MAP_X; x++) {
                 int p_status = player_find(x,y);
                 if (p_status == PLAYER1_FOUND){
-                    printf("A");
+                    printf("%c", OBJ_PLAYER_A_SYB);
                     continue;
                 } else if (p_status == PLAYER2_FOUND) {
-                    printf("B");
+                    printf("%c", OBJ_PLAYER_B_SYB);
                     continue;
                 } else if (p_status == PLAYER_ALL_FOUND) {
-                    printf("@");
+                    printf("%c", OBJ_BOTH_SYB);
                     continue;
                 }
 
                 int obj = 0;
                 int o_status = object_find(x,y,&obj);
                 if (o_status == OBJECT_NOT_FOUND){
-                    printf("*");
+                    printf("%c", OBJ_BACKGROUND_SYB);
                     continue;
                 } else if (o_status == OBJECT_FOUND) {
                     if (obj == OBJECT_GOOD)
-                        printf("$");
+                        printf("%c", OBJ_GOOD_SYB);
                     else if (obj == OBJECT_BAD)
-                        printf("#");
+                        printf("%c", OBJ_BAD_SYB);
                     continue;
                 } else if (o_status == OBJECT_MISS) {
-                    printf("|");
+                    printf("%c", OBJ_SHOOT_SYB);
                     continue;
                 } else if (o_status == OBJECT_HIT_BY_P1 || o_status == OBJECT_HIT_BY_P2) {
-                    printf("X");
+                    printf("%c", OBJ_HIT_SYB);
                     continue;
                 }
             }
