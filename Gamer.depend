@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1643356330 source:/home/mouchen/Documents/CODEBLOCKS_data/Gamer/main.c
+	<stdio.h>
+	<stdlib.h>
+	<pthread.h>
+
